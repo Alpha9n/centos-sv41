@@ -1,0 +1,18 @@
+services:
+  centos:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: centos
+    ports:
+      - "8080:80"
+    volumes:
+      - ./home:/home
+      - ./data:/data
+    environment:
+      - DISPLAY=docker.for.mac.host.internal:0
+      - USER_NAME=jimbo
+    user: root
+    command: /bin/bash
+    stdin_open: true
+    tty: true
