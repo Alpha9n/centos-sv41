@@ -1,0 +1,28 @@
+services:
+  centos-sv:
+    image: centos-sv:latest
+    container_name: centos-sv-container
+    privileged: true
+    volumes:
+      - ./www:/var/www
+      # conf.d はコンテナ内部に保持（直接マウントは権限問題があったため）
+      # 証明書は named volume (永続) に退避
+      - certs:/etc/pki/tls/certs
+      - ./data:/root/data
+      - ./etc/hostname:/etc/hostname:rw
+    tmpfs:
+      - /tmp
+      - /run
+    ports:
+      - "80:80"
+      - "443:443"
+    tty: true
+    stdin_open: true
+    networks:
+      - centos-network
+
+networks:
+  centos-network:
+    driver: bridge
+volumes:
+  certs:
