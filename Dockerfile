@@ -20,7 +20,8 @@ RUN dnf update -y && \
       php \
       php-pear \
       php-fpm \
-      mod_ssl && \
+      mod_ssl \
+      samba && \
     dnf clean all
 
 # ユーザーを追加してパスワードをhalhalに設定
@@ -36,7 +37,8 @@ RUN sed -i 's|proxy:unix:/run/php-fpm/www.sock\|fcgi://localhost|proxy:fcgi://12
 
 # サービス自動起動設定
 RUN systemctl enable httpd && \
-    systemctl enable php-fpm
+    systemctl enable php-fpm && \
+    systemctl enable smb
 
 COPY .bashrc /root/.bashrc
 
