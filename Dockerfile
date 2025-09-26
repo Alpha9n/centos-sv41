@@ -41,8 +41,6 @@ RUN set -x && \
     # SELinuxを無効化
     sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config && \
     # FirewallでSambaを許可
-    firewall-cmd --add-service=samba --permanent && \
-    firewall-cmd --reload && \
     # 共有ディレクトリ作成
     mkdir -p /var/samba/share && \
     mkdir -p /var/samba/private && \
