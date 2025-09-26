@@ -10,12 +10,15 @@ services:
       - certs:/etc/pki/tls/certs
       - ./data:/root/data
       - ./etc/hostname:/etc/hostname:rw
+      - ./etc/smb.conf:/etc/samba/smb.conf
     tmpfs:
       - /tmp
       - /run
     ports:
       - "80:80"
       - "443:443"
+      - "139:139"
+      - "445:445"
     tty: true
     stdin_open: true
     networks:
