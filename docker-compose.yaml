@@ -5,17 +5,32 @@ services:
     privileged: true
     volumes:
       - ./www:/var/www
-      # conf.d はコンテナ内部に保持（直接マウントは権限問題があったため）
-      # 証明書は named volume (永続) に退避
+      # Apache設定ファイルのマウント
+      - ./etc/httpd/conf:/etc/httpd/conf:rw
+      - ./etc/httpd/conf.d:/etc/httpd/conf.d:rw
+      - ./etc/httpd/conf.modules.d:/etc/httpd/conf.modules.d:rw
+      # PKI設定ファイルのマウント
+      - ./etc/pki/tls:/etc/pki/tls:rw
       - certs:/etc/pki/tls/certs
+      # 追加のhttpd設定ディレクトリをマウント
+      - ./httpd:/opt/httpd:rw
       - ./data:/root/data
       - ./etc/hostname:/etc/hostname:rw
+      # dnsmasq DNS設定ファイルのマウント
+      - ./etc/dnsmasq.conf:/etc/dnsmasq.conf:rw
+      - ./etc/dnsmasq.d:/etc/dnsmasq.d:rw
+      
     tmpfs:
       - /tmp
       - /run
     ports:
       - "80:80"
       - "443:443"
+      - "8053:53/tcp"
+      - "8053:53/udp"
+    dns:
+      - "10.72.1.11"
+      - "10.72.1.13"
     tty: true
     stdin_open: true
     networks:

@@ -1,0 +1,4 @@
+Oct 17 07:27:59 dnsmasq[35]: started, version 2.85 cachesize 1000
+Oct 17 07:27:59 dnsmasq[35]: compile time options: IPv6 GNU-getopt DBus no-UBus no-i18n IDN2 DHCP DHCPv6 no-Lua TFTP no-conntrack ipset auth cryptohash DNSSEC loop-detect inotify dumpfile
+Oct 17 07:27:59 dnsmasq[35]: read /etc/hosts - 7 addresses
+Oct 17 07:35:57 dnsmasq[35]: exiting on receipt of SIGTERM

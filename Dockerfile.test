@@ -1,0 +1,18 @@
+# テスト用の軽量Dockerfile
+FROM rockylinux:9
+
+RUN dnf update -y && \
+    dnf install -y \
+      httpd \
+      php \
+      php-fpm \
+      vim && \
+    dnf clean all
+
+# 簡単な動作確認用
+RUN echo "Proxy test successful!" > /tmp/build-test.txt
+
+# Apache起動準備
+RUN systemctl enable httpd
+
+CMD ["/sbin/init"]

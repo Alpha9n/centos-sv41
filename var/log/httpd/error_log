@@ -1,0 +1,2 @@
+[Fri Oct 17 07:59:10.432691 2025] [mime:error] [pid 179:tid 179] (2)No such file or directory: AH01597: could not open mime types config file /etc/mime.types.
+AH00016: Configuration Failed
